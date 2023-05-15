@@ -16,35 +16,27 @@ function replace_variable_placeholder($content) {
 ?>
 <?php
 /****************************************** call the function using group and repeater inside with foreach  ***************************************/
-$field = get_field('field');
-$field = replace_variable_placeholder($field);
 
-if (!empty($field)) {
-    foreach ($field as $field_item) {
-        $title_white = $field_item['title'];
-        $images_repeater = $field_item['images_repeater'];
-        ?>
-        <section>
-            <div class="container">
-                <h2 class="heading">
-                    <?php echo $title; ?>
-                </h2>
-                <?php if (!empty($images_repeater)) { ?>
-                    <div>
-                        <?php foreach ($images_repeater as $image_item) {
-                            $img = $image_item['img'];
-                            $img_alt = $img['alt'];
-                            $img_url = $img['url'];
-                            ?>
+$MainField = get_field('main_field', 'option');
+$MainField = replace_variable_placeholder($MainField);
+
+if (!empty($MainField)): ?>
+    <section>
+        <div>
+            <h2><?php echo $MainField['grey_title'] ?></h2>
+            <div class="row">
+                <?php foreach ($MainField['images_repeater'] as $SubField): ?>
+                        <div>
                             <div>
-                                <img loading="lazy" alt="<?php echo $img_alt; ?>" src="<?php echo $img_url; ?>"/>
+                                <img src="<?php echo $SubField['icon']['url'] ?>" alt="<?php echo $SubField['icon']['alt'] ?>">
+                                <div><?php echo $SubField['text'] ?></div>
                             </div>
-                        <?php } ?>
-                    </div>
-                <?php } ?>
+                        </div>
+                <?php endforeach ?>
             </div>
-        </section>
-    <?php
-    }
-}
+        </div>
+    </section>
+<?php
+endif
+/**********************************************************************  end Best Choice *****************************************************************/
 ?>
