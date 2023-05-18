@@ -5,6 +5,9 @@ function replace_variable_placeholder($content) {
     $placeholders = array('[variable]', '[Variable]');
     $page_title = get_the_title();
 
+    // Remove 'Removalist' from the page title
+    $page_title = str_ireplace('Example to remove', '', $page_title);
+
     foreach ($placeholders as $placeholder) {
         if (strpos($content, $placeholder) !== false) {
             $content = str_ireplace($placeholder, $page_title, $content);
