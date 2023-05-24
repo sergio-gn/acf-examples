@@ -1,6 +1,5 @@
 <?php
 //****************************************   Insert Function on Top    *****************//
-
 function replace_variable_placeholder($content) {
     $placeholders = array('[variable]', '[Variable]');
     $page_title = get_the_title();
@@ -16,12 +15,15 @@ function replace_variable_placeholder($content) {
 
     return $content;
 }
-
-/****************************************   call the function    *****************/
+?>
+<?php
+/****************************************   Call The Function On Section    *****************/
 
     $customSolutions = get_field('example_field');
     $customSolutions = replace_variable_placeholder($customSolutions);
     if($customSolutions):
-        // HTML CODE
-    endif;
 ?>
+    <div>
+        HTML CODE
+    </div>
+<?php endif; ?>
