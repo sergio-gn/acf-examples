@@ -29,14 +29,14 @@ function replace_variable_placeholder($content) {
 }
 ?>
 
-<?php /****************************************   section 4    ******************************/
+<?php /****************************************   section 1    ******************************/
 
-    $sectionFour = (!empty($sectionFour = get_field('section_4')) && array_filter($sectionFour, 'trim')) ? $sectionFour : get_field('section_4', 'option');
-    $sectionFour = replace_variable_placeholder($sectionFour);
-if($sectionFour):
+    $sectionOne = (!empty($sectionOne = get_field('section_4')) && array_filter($sectionOne, 'trim')) ? $sectionOne : get_field('section_4', 'option');
+    $sectionOne = replace_variable_placeholder($sectionOne);
+if($sectionOne):
 ?>
-<h3>
-    <?php echo $sectionFour['subtitle'] ?>
-</h3>
+<h1>
+    <?php echo $sectionOne['title'] ?>
+</h1>
 
 <?php endif ?>
