@@ -16,27 +16,30 @@ function replace_variable_placeholder($content) {
 ?>
 <?php
 /****************************************** call the function using group and repeater inside with foreach  ***************************************/
-
-$MainField = get_field('main_field', 'option');
-$MainField = replace_variable_placeholder($MainField);
-
-if (!empty($MainField)): ?>
-    <section>
-        <div>
-            <h2><?php echo $MainField['grey_title'] ?></h2>
-            <div class="row">
-                <?php foreach ($MainField['images_repeater'] as $SubField): ?>
-                        <div>
-                            <div>
-                                <img src="<?php echo $SubField['icon']['url'] ?>" alt="<?php echo $SubField['icon']['alt'] ?>">
-                                <div><?php echo $SubField['text'] ?></div>
-                            </div>
-                        </div>
-                <?php endforeach ?>
+$content_repeater = (!empty($content_repeater = get_field('content_repeater')) && array_filter($content_repeater, 'trim')) ? $content_repeater : get_field('content_repeater', 'option');
+if (!empty($content_repeater)): ?>
+    <section class="container">
+        <?php $index = 0;
+        foreach ($content_repeater as $content):
+            $index++;
+            $content = replace_variable_placeholder($content);
+            ?>
+            <div class="content_repeater <?php if ($index % 2 != 1) { echo ' reverse-flex'; } ?>">
+                <div>
+                    <h2>
+                        <?php echo $content['title']; ?>
+                    </h2>
+                    <p>
+                        <?php echo $content['text']; ?>
+                    </p>
+                </div>
+                <div>
+                    <div>
+                        <?php $img = $content['img']; ?>
+                        <img src="<?php echo $img['url']; ?>" alt="<?php echo $img['alt']; ?>"/>
+                    </div>
+                </div>
             </div>
-        </div>
+        <?php endforeach; ?>
     </section>
-<?php
-endif
-/**********************************************************************  end Best Choice *****************************************************************/
-?>
+<?php endif;?>
