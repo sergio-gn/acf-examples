@@ -10,6 +10,15 @@
         ->get data from custom fields
         ->output data on the html
         -> create conditions in the code each section, saying: if data from post page using template is empty, use the options field instead.
+        EXAMPLE:
+        > $cta = get_field('cta');
+          if (empty($cta['title'])) {
+              $cta['title'] = get_field('cta', 'option')['title'];
+          }
+        <h1 style="margin: 0;"><?php echo $cta['button_subtext']?></h1>
+        </div>
+        
+        <?php endif; ?>
 
 ## 3- GO TO FUNCTIONS.php, AND CREATE OPTIONS PAGE, EXAMPLE:
 
@@ -34,13 +43,3 @@ if( function_exists('acf_add_options_sub_page') ) {
 # 4- CONNECT YOUR ADVANCED CUSTOM FIELD (ACF) with the template file.
     -> "Shows this field group if: Page Template is equal to Suburb"
     -> "Shows this field group if: Options Page is equal to Suburb Options"
-
-EXAMPLE:
-> $cta = get_field('cta');
-  if (empty($cta['title'])) {
-      $cta['title'] = get_field('cta', 'option')['title'];
-  }
-<h1 style="margin: 0;"><?php echo $cta['button_subtext']?></h1>
-</div>
-
-<?php endif; ?>
