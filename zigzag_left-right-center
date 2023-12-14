@@ -1,0 +1,31 @@
+<?php 
+$zigzag = get_field('zigzag');
+foreach ($zigzag as $key => $item) { ?>
+    <section id="block-<?= $key + 1 ?>" class="2xl:pt-5 flex justify-center">
+        <div class="w-10/12 from-bblue to-dblue text-white flex lg:flex-row flex-col-reverse lg:px-10 px-5 lg:pb-10 items-center">
+
+            <?php 
+            $image = $item['image'];
+            $hasImage = !empty($image);
+            $number = $hasImage ? 7 : 12;
+            ?>
+
+            <?php if($hasImage):?>
+                <div class="lg:w-5/12 flex justify-center order-<?= ($key % 2 === 0) ? '1' : '2'; ?>">
+                    <div style="width:600px; height:400px" class="overflow-hidden rounded-lg">
+                        <img loading="lazy" class="w-full h-full object-cover" src="<?php echo $image['url']?>" alt="<?php echo $image['alt']?>" /> 
+                    </div>
+                </div>
+            <?php endif;?>
+
+            <div class="lg:w-<?php echo $number; ?>/12 py-10 order-<?= ($key % 2 === 0) ? '2' : '1'; ?>">
+                <?php if ($item['text']) { ?>
+                    <div class="text-dblue lg:pl-20 xl:text-1xl md:text-2xl text-2xl font-medium lg:leading-normal">
+                        <?= $item['text'] ?>
+                    </div>
+                <?php } ?>
+            </div>
+
+        </div>
+    </section>
+<?php } ?>
