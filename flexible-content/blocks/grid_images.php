@@ -1,8 +1,9 @@
-<?php if( have_rows('grid_images') ): ?>
-    <section class="front-grid d-flex_newcss justify-center_newcss">
-        <div class="container_newcss">
+<section class="front-grid d-flex_newcss justify-center_newcss">
+    <div class="container_newcss">
+        <h1><?php the_sub_field('example_title');?></h1>
+        <?php if( have_rows('example_repeater') ): ?>
             <div class="front-grid-3 d-grid_newcss gap_1">
-                <?php while( have_rows('grid_images') ): the_row(); 
+                <?php while( have_rows('example_repeaters') ): the_row(); 
                     $link = get_sub_field('link');
                     $image = get_sub_field('image');
                     $title = get_sub_field('title');
@@ -17,6 +18,6 @@
                         </div>
                 <?php endwhile; ?>
             </div>
-        </div>
-    </section>
-<?php endif; ?>
+        <?php endif; ?>
+    </div>
+</section>
